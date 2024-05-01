@@ -7,14 +7,8 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private NavMeshAgent agent = null;
 
     private Camera mainCamera;
-    private Camera _camera;
 
     #region Server
-
-    private void Start()
-    {
-        _camera = Camera.main;
-    }
 
     [Command]
     private void CmdMove(Vector3 position)
@@ -30,7 +24,7 @@ public class PlayerMovement : NetworkBehaviour
 
     public override void OnStartAuthority()
     {
-        mainCamera = _camera;
+        mainCamera = Camera.main;
     }
 
     [ClientCallback]
